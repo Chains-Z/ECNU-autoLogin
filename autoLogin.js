@@ -13,7 +13,6 @@
 // ==/UserScript==
 
 (function() {
-  'esvresion: 6'
   'use strict';
   if (self == top) {
       GM_log("HHHHello")
