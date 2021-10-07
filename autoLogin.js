@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ECNU autoLogin(need chrome)
 // @namespace    https://github.com/Chains-Z
-// @version      0.1
+// @version      0.2.2
 // @description  华东师范大学统一身份认证自动识别填写验证码并登陆脚本
 // @require      https://unpkg.com/tesseract.js@v2.1.2/dist/tesseract.min.js
 // @author       Chains-Z
@@ -13,26 +13,24 @@
 // ==/UserScript==
 
 (function() {
-  'use strict';
-  if (self == top) {
-      GM_log("HHHHello")
-      let img = document.getElementById("codeImage")
-      Tesseract.recognize(
-          img.src,
-          'eng', {
-              logger: m => GM_log(m)
-          }
-      ).then(({
-          data: {
-              text
-          }
-      }) => {
-          GM_log(text);
-          let title = document.getElementById("code")
-          title.value = text
-          let btn = document.getElementsByClassName("login_box_landing_btn")[0]
-          GM_log(btn.length)
-          btn.click()
-      })
+    'use strict'
+    if (self == top) {
+        let img = document.getElementById("codeImage")
+        Tesseract.recognize(
+            img.src,
+            'eng', {}
+        ).then(({
+            data: {
+                text
+            }
+        }) => {
+           // GM_log(text);
+            let title = document.getElementById("code")
+            title.value = text
+            let btn = document.getElementById("index_login_btn")
+            GM_log(btn)
+            console.log(btn)
+            btn.click()
+        })
 }
 })();
